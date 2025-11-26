@@ -1,0 +1,44 @@
+/* Rock Paper Scissors */
+
+/* * {
+    
+} */
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 800px;
+    justify-content: start;
+    gap: 50px;
+}
+
+.banner {
+    background-color: darkgray;
+    color: whitesmoke;
+    height: 100px;
+    width: 100% auto;
+    display: flex;
+    font-size: xx-large;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#top-banner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game-menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: large;
+    gap: 80px;
+}
+
+.game-buttons {
+    display: flex;
+    gap: 70px;
+    font-size: xx-large;
+}
