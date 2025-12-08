@@ -5,31 +5,30 @@ let gameMessage = "";
 let battleText = "";
 let playerChoice = "";
 let computerChoice = "";
-let wins = 0;
-let losses = 0;
+let wins = 0, losses = 0;
 
 document.getElementById('button-rock').addEventListener('click', function () {
     playerChoice = "rock";
     console.log('Rock Button pressed.');
     gameMessage = 'You have chosen Rock!';
-    startMatch(playerChoice);
+    playRound(playerChoice);
 });
 
 document.getElementById('button-paper').addEventListener('click', function () {
     playerChoice = "paper";
     console.log('Paper Button pressed.');
     gameMessage = 'You have chosen Paper!';
-    startMatch(playerChoice);
+    playRound(playerChoice);
 });
 
 document.getElementById('button-scissors').addEventListener('click', function () {
     playerChoice = "scissors";
     console.log('Scissors Button pressed.');
     gameMessage = 'You have chosen Scissors!';
-    startMatch(playerChoice);
+    playRound(playerChoice);
 });
 
-function startMatch(playerChoice) {
+function playRound(playerChoice) {
     var randomIdx = Math.floor(Math.random() * gameChoices.length);
     let computerChoice = gameChoices[randomIdx];
     console.log(`The Computer chose ${computerChoice}.`);
@@ -41,39 +40,52 @@ function startMatch(playerChoice) {
 
     if (playerChoice == 'rock' && computerChoice == 'scissors') {
         console.log(`WIN: ${playerChoice} wins over ${computerChoice}`);
-        battleText = `Your rock smashes the scissors! YOU WIN!`;
+        battleText = `Your rock smashes the scissors!`;
         ++wins;
     } else if (playerChoice == 'rock' && computerChoice == 'paper') {
         console.log(`LOSS: ${playerChoice} loses to ${computerChoice}`);
-        battleText = `Your rock is smothered by the paper! YOU LOSE!`;
+        battleText = `Your rock is smothered by the paper!`;
         ++losses;
     }
 
     if (playerChoice == 'paper' && computerChoice == 'rock') {
         console.log(`WIN: ${playerChoice} wins over ${computerChoice}`);
-        battleText = `Your paper smothers the rock! YOU WIN!`;
+        battleText = `Your paper smothers the rock!`;
         ++wins;
     } else if (playerChoice == 'paper' && computerChoice == 'scissors') {
         console.log(`LOSS: ${playerChoice} loses to ${computerChoice}`);
-        battleText = `Your paper is cut to ribbons by the scissors! YOU LOSE!`;
+        battleText = `Your paper is cut to ribbons by the scissors!`;
         ++losses;
     }
 
     if (playerChoice == 'scissors' && computerChoice == 'paper') {
         console.log(`WIN: ${playerChoice} wins over ${computerChoice}`);
-        battleText = `Your scissors shred the paper! YOU WIN!`;
+        battleText = `Your scissors shred the paper!`;
         ++wins;
     } else if (playerChoice == 'scissors' && computerChoice == 'rock') {
         console.log(`LOSS: ${playerChoice} loses to ${computerChoice}`);
-        battleText = `Your scissors are smashed by the rock! YOU LOSE!`;
+        battleText = `Your scissors are smashed by the rock!`;
         ++losses;
     }
+
+    checkWinner();
 
     console.log(`losses: ${losses} | wins: ${wins}`);
     document.getElementById('game-battle-result').innerHTML = battleText;
     statsMessage = `Wins: ${wins} | Losses: ${losses}`
     document.getElementById('stats-text').innerHTML = statsMessage;
 
-
 };
 
+function checkWinner() {
+    if (wins >= 5) {
+        wins = 0;
+        losses = 0;
+        return alert("You have won! Amazing!");
+    } else if (losses >= 5) {
+        wins = 0;
+        losses = 0;
+        return alert("You have lost! Pathetic!");
+    }
+
+}
